@@ -1,0 +1,17 @@
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            from components.java
+            groupId 'com.test.lgd'
+            artifactId 'MavenPlugin'
+            version "1.0.0"
+        }
+    }
+//    repositories {
+//        maven {
+//            url = uri("B:/maven")
+//        }
+//    }
+}

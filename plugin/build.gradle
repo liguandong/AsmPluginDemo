@@ -1,0 +1,44 @@
+
+plugins {
+    id 'kotlin'
+    id 'org.jetbrains.kotlin.jvm'
+    id 'java-gradle-plugin'
+}
+//
+apply from: 'maven.gradle'
+
+gradlePlugin {
+    plugins {
+        simplePlugin {
+            id = 'MavenPlugin'
+            implementationClass = 'MavenPlugin'
+        }
+    }
+}
+
+dependencies {
+    compileOnly 'com.android.tools.build:gradle:7.1.2'
+    compileOnly gradleApi()
+}
+//publishing {
+//    repositories {
+//        maven {
+//            credentials {
+//                username 'appdev' // 仓库发布用户名
+//                password 'iovabc123' // 仓库发布用户密码
+//            }
+////            url 'http://172.26.157.113:8081/repository/maven_android/' // 仓库地址
+//            url uri('D:\\repo')
+//        }
+//    }
+//    publications {
+//        maven(MavenPublication) {
+//            groupId 'com.szlanyou.iov' // groupId
+//            artifactId 'lyEventTrackPlugin' // artifactId
+//            version project.ext.plugin_version // 发布版本
+//            description '埋点组件' // 说明描述
+//            from components.java
+//        }
+//
+//    }
+//}

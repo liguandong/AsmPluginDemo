@@ -1,0 +1,60 @@
+//apply plugin: 'org.jetbrains.kotlin.jvm'
+//apply plugin: 'java'
+//apply plugin: 'groovy'
+buildscript {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
+        classpath 'com.android.tools.build:gradle:7.2.2'
+    }
+}
+plugins {
+    id 'java-gradle-plugin'
+}
+apply plugin: 'kotlin'
+
+
+
+gradlePlugin {
+    plugins {
+        simplePlugin {
+            id = 'test-plugin3'
+            implementationClass = 'TestPlugin3'
+        }
+        simplePlugin2 {
+            id = 'amsPlugin'
+            implementationClass = 'AmsPlugin'
+        }
+    }
+}
+task A{
+    println "buildSrcTask"
+}
+
+repositories {
+    google()
+    mavenCentral()
+}
+dependencies {
+//    repositories {
+//        google()
+//        mavenCentral()
+//    }
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation gradleApi()//gradle sdk
+    implementation "com.android.tools.build:gradle:7.2.2"
+    implementation "org.ow2.asm:asm-util:7.1"
+
+//    implementation localGroovy()//groovy sdk
+}
+println("buildSrc build.gradle  当前是配置阶段")
+
+//java {
+//    sourceCompatibility = JavaVersion.VERSION_1_8
+//    targetCompatibility = JavaVersion.VERSION_1_8
+//}

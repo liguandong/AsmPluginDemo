@@ -6,11 +6,62 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+//    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
     }
 }
+println 'This is executed during the initialization phase. （初始化阶段）'
+
+//gradle.taskGraph.whenReady {
+//    println("taskGraph whenReady")
+//}
+//gradle.taskGraph.beforeTask{
+//    println("taskGraph beforeTask $it")
+//}
+//gradle.taskGraph.afterTask {
+//    println("taskGraph afterTask $it")
+//
+//}
+
+//gradle.addProjectEvaluationListener(new ProjectEvaluationListener() {
+//    @Override
+//    void beforeEvaluate(Project project) {
+//        println "ProjectEvaluationListener beforeEvaluate ${project.name}"
+//    }
+//
+//    @Override
+//    void afterEvaluate(Project project, ProjectState projectState) {
+//        println "ProjectEvaluationListener afterEvaluate ${project.name}"
+//
+//    }
+//})
+//gradle.addBuildListener(new BuildListener() {
+//    @Override
+//    void settingsEvaluated(Settings settings) {
+//        println 'BuildListener settingsEvaluated'
+//    }
+//
+//    @Override
+//    void projectsLoaded(Gradle gradle) {
+//        println 'BuildListener projectsLoaded'
+//    }
+//
+//    @Override
+//    void projectsEvaluated(Gradle gradle) {
+//        println 'BuildListener projectsEvaluated'
+//    }
+//
+//    @Override
+//    void buildFinished(BuildResult buildResult) {
+//        println 'BuildListener buildFinished'
+//    }
+//})
+
 rootProject.name = "AsmPluginDemo"
 include ':app'
+include ':plugin'
+//include ':BuildSrc'
+
+include ':commonlib'

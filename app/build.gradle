@@ -5,6 +5,8 @@ plugins {
 //apply plugin: 'test-plugin2'
 //apply plugin: 'test-plugin3'
 apply plugin: 'MavenPlugin'
+//apply plugin: AmsPlugin
+apply plugin: AmsActivityPlugin
 
 //apply plugin: TestPlugin
 //myExtension {
@@ -55,4 +57,6 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    implementation "org.ow2.asm:asm-util:7.1"
 }

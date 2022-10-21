@@ -1,3 +1,5 @@
+package asm
+
 import org.gradle.internal.impldep.org.objectweb.asm.ClassVisitor
 import org.gradle.internal.impldep.org.objectweb.asm.MethodVisitor
 import org.gradle.internal.impldep.org.objectweb.asm.Opcodes

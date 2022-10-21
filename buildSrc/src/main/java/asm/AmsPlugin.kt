@@ -1,6 +1,7 @@
+package asm
+
 import com.android.build.api.instrumentation.*
 import com.android.build.api.variant.AndroidComponentsExtension
-import com.android.build.gradle.AppExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
@@ -22,7 +23,8 @@ class AmsPlugin : Plugin<Project> {
         androidComponents.onVariants { variant ->
             println("onVariants ${variant.name}")
             // 注册工厂和设置输入参数
-            variant.instrumentation.transformClassesWith(ExampleClassVisitorFactory::class.java,
+            variant.instrumentation.transformClassesWith(
+                ExampleClassVisitorFactory::class.java,
                 InstrumentationScope.ALL) {
                 it.writeToStdout.set(true)
             }

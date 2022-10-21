@@ -1,14 +1,13 @@
-import bean.MyExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 /**
  * @author liguandong
- * @data 2022/9/28
+ * @data 2022/10/8
  *
  */
-class TestPlugin2 : Plugin<Project> {
+class LocalMavenPlugin:Plugin<Project> {
     override fun apply(project: Project) {
-        println("TestPlugin2 apply ")
+        println("LocalMavenPlugin")
     }
 }

@@ -1,4 +1,6 @@
-import bean.MyExtension
+package plugintest
+
+import plugintest.bean.MyExtension
 import org.gradle.api.DefaultTask
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
@@ -11,13 +13,13 @@ import javax.inject.Inject
  *
  */
 
-open abstract class MyTask @Inject constructor(private val myExtension: MyExtension):DefaultTask() {
+abstract class TestPluginTask1 @Inject constructor(private val myExtension: MyExtension):DefaultTask() {
 
     @get:Input
     abstract val message: Property<String>
 
     @TaskAction
     fun doTask(){
-        println("MyTask ${myExtension.name} ${message.get()}")
+        println("plugintest.MyTask ${myExtension.name} ${message.get()}")
     }
 }

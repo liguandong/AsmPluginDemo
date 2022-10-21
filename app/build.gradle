@@ -1,27 +1,28 @@
+import asm.AmsActivityPlugin
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
 }
+
+apply plugin: plugintest.TestPlugin
+myExtension {
+    name = "lgd"
+    verCode = 2
+}
 //apply plugin: 'test-plugin2'
-//apply plugin: 'test-plugin3'
-apply plugin: 'MavenPlugin'
+//apply plugin: 'MavenPlugin'
 //apply plugin: AmsPlugin
 apply plugin: AmsActivityPlugin
 
-//apply plugin: TestPlugin
-//myExtension {
-//    name = "lgd"
-//    verCode = 2
-//}
-
 println("app build.gradle (构建阶段)")
 android {
-    compileSdk 32
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.cs.asmplugindemo"
         minSdk 21
-        targetSdk 32
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 
@@ -39,7 +40,7 @@ android {
         targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = "11"
     }
     buildFeatures {
         viewBinding true
@@ -48,8 +49,8 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.5.0-alpha04'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.1'

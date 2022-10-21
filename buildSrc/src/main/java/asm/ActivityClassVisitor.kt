@@ -1,3 +1,5 @@
+package asm
+
 import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.FieldVisitor
 import org.objectweb.asm.MethodVisitor
@@ -31,21 +33,22 @@ class ActivityClassVisitor(nextClassVisitor: ClassVisitor) :
         exceptions: Array<out String>?
     ): MethodVisitor {
         val methodVisitor = super.visitMethod(access, name, descriptor, signature, exceptions)
-        println("ActivityClassVisitor visitMethod name:${name} descriptor:${descriptor} signature:${signature} exceptions: ${exceptions}")
+        println("asm.ActivityClassVisitor visitMethod name:${name} descriptor:${descriptor} signature:${signature} exceptions: ${exceptions}")
         val newMethodVisitor =
             object : AdviceAdapter(Opcodes.ASM9, methodVisitor, access, name, descriptor) {
                 @Override
                 override fun onMethodEnter() {
                     // 方法开始
                     super.onMethodEnter()
-                    println("ActivityClassVisitor visitMethod name:${name} onMethodEnter")
+                    println("asm.ActivityClassVisitor visitMethod name:${name} onMethodEnter")
                 }
 
                 @Override
                 override fun onMethodExit(opcode: Int) {
                     // 方法结束
                     super.onMethodExit(opcode)
-                    println("ActivityClassVisitor visitMethod name:${name} onMethodExit opcode:${opcode}")
+
+                    println("asm.ActivityClassVisitor visitMethod name:${name} onMethodExit opcode:${opcode}")
                 }
             }
         return newMethodVisitor

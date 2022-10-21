@@ -1,5 +1,6 @@
 package com.cs.asmplugindemo
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import com.google.android.material.snackbar.Snackbar
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val btn1 = findViewById<Button>(R.id.btn1)
         btn1.setOnClickListener {
-
+            startActivity(Intent(this,TestActivity::class.java))
         }
     }
 }

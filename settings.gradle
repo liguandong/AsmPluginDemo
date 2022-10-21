@@ -12,6 +12,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+println 'setting.gradle'
 println 'This is executed during the initialization phase. （初始化阶段）'
 
 //gradle.taskGraph.whenReady {
@@ -63,5 +64,4 @@ rootProject.name = "AsmPluginDemo"
 include ':app'
 include ':plugin'
 //include ':BuildSrc'
-
 include ':commonlib'

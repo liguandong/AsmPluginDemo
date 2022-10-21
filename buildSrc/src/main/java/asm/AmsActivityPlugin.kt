@@ -1,3 +1,5 @@
+package asm
+
 import com.android.build.api.instrumentation.*
 import com.android.build.api.variant.AndroidComponentsExtension
 import org.gradle.api.Plugin
@@ -13,7 +15,7 @@ import org.objectweb.asm.ClassVisitor
  */
 class AmsActivityPlugin : Plugin<Project> {
     override fun apply(project: Project) {
-        println("AmsActivityPlugin apply ")
+        println("asm.AmsActivityPlugin apply ")
         val androidComponents = project.extensions.getByType(AndroidComponentsExtension::class.java)
         androidComponents.onVariants { variant ->
             println("onVariants ${variant.name}")

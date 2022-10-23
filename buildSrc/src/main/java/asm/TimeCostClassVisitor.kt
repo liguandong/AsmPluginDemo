@@ -1,9 +1,9 @@
 package asm
 
-import org.gradle.internal.impldep.org.objectweb.asm.ClassVisitor
-import org.gradle.internal.impldep.org.objectweb.asm.MethodVisitor
-import org.gradle.internal.impldep.org.objectweb.asm.Opcodes
-import org.gradle.internal.impldep.org.objectweb.asm.commons.AdviceAdapter
+import org.objectweb.asm.ClassVisitor
+import org.objectweb.asm.MethodVisitor
+import org.objectweb.asm.Opcodes
+import org.objectweb.asm.commons.AdviceAdapter
 
 /**
  * @author liguandong
@@ -11,8 +11,25 @@ import org.gradle.internal.impldep.org.objectweb.asm.commons.AdviceAdapter
  *
  */
 class TimeCostClassVisitor(nextVisitor: ClassVisitor) : ClassVisitor(Opcodes.ASM7, nextVisitor) {
+    private var className: String? = null
+    override fun visit(
+        version: Int,
+        access: Int,
+        name: String?,
+        signature: String?,
+        superName: String?,
+        interfaces: Array<out String>?
+    ) {
+        super.visit(version, access, name, signature, superName, interfaces)
+        className = name
+    }
+
     override fun visitMethod(
-        access: Int, name: String?, descriptor: String?, signature: String?, exceptions: Array<out String>?
+        access: Int,
+        name: String?,
+        descriptor: String?,
+        signature: String?,
+        exceptions: Array<out String>?
     ): MethodVisitor {
         val methodVisitor = super.visitMethod(access, name, descriptor, signature, exceptions)
         val newMethodVisitor =
@@ -21,9 +38,12 @@ class TimeCostClassVisitor(nextVisitor: ClassVisitor) : ClassVisitor(Opcodes.ASM
                 override fun onMethodEnter() {
                     // 方法开始
                     if (isNeedVisiMethod(name)) {
-                        mv.visitLdcInsn(name);
-                        mv.visitMethodInsn(
-                            INVOKESTATIC, "com/zj/android_asm/TimeCache", "putStartTime","(Ljava/lang/String;)V", false
+                        visitMethodInsn(
+                            INVOKESTATIC,
+                            "com/cs/commonlib/TimeCostUtils",
+                            "onMethodEnter",
+                            "()V",
+                            false
                         );
                     }
                     super.onMethodEnter();
@@ -33,9 +53,14 @@ class TimeCostClassVisitor(nextVisitor: ClassVisitor) : ClassVisitor(Opcodes.ASM
                 override fun onMethodExit(opcode: Int) {
                     // 方法结束
                     if (isNeedVisiMethod(name)) {
-                        mv.visitLdcInsn(name);
-                        mv.visitMethodInsn(
-                            INVOKESTATIC, "com/zj/android_asm/TimeCache", "putEndTime","(Ljava/lang/String;)V", false
+                        visitLdcInsn(className);
+                        visitLdcInsn(name);
+                        visitMethodInsn(
+                            INVOKESTATIC,
+                            "com/cs/commonlib/TimeCostUtils",
+                            "onMethodEnd",
+                            "(Ljava/lang/String;Ljava/lang/String;)V",
+                            false
                         );
                     }
                     super.onMethodExit(opcode);
@@ -44,7 +69,7 @@ class TimeCostClassVisitor(nextVisitor: ClassVisitor) : ClassVisitor(Opcodes.ASM
         return newMethodVisitor
     }
 
-    private fun isNeedVisiMethod(name: String?):Boolean {
-        return name != "putStartTime" && name != "putEndTime" && name != "<clinit>" && name != "printlnTime" && name != "<init>"
+    private fun isNeedVisiMethod(name: String?): Boolean {
+        return name != "<clinit>" && name != "<init>"
     }
 }

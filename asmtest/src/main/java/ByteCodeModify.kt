@@ -1,24 +1,30 @@
 import org.objectweb.asm.*
 import org.objectweb.asm.commons.AdviceAdapter
+import org.objectweb.asm.commons.Method
 import java.io.File
 
 /**
  * @author liguandong
  * @data 2022/10/10
+ *
  */
-object ByteCodeModifyKt {
+//方法描述符   https://www.yuque.com/mikaelzero/asm/mh871e
+//类型描述符   https://www.yuque.com/mikaelzero/asm/vntppt
+//字节码指令  https://www.yuque.com/mikaelzero/asm/ka0wu4
+object ByteCodeModify {
     @JvmStatic
     fun main(args: Array<String>) {
-        val readClassFilePath = "buildSrc/build/classes/java/main/ByteCodeTest.class"
-        val writeClassFilePath = "buildSrc/src/main/java/ByteCodeTestModify.class"
+        val readClassFilePath = ReadClassFilePath
+//        val writeClassFilePath = "asmtest/out/production/ByteCodeTest.class"
+        val writeClassFilePath = WriteClassFilePath
         // 1 定义ClassReader，并且读取字节码
         val classReader = ClassReader(File(readClassFilePath).inputStream())
-        //2 定义ClassWriter,用于获取字节码
+        //2 定义ClassWriter,用于获取字节码，自动计算栈帧和局部变量表的大小
         val classWriter = ClassWriter(ClassWriter.COMPUTE_MAXS)
         //3 定义中间人ClassVisitor，并委托给classWriter
         val classVisitor = MyClassVisitor(classWriter)
-        //4 开始事件调用
-        classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES or ClassReader.SKIP_FRAMES)
+        //4 开始执行
+        classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES)
         File(writeClassFilePath).outputStream().write(classWriter.toByteArray())
     }
 
@@ -44,6 +50,12 @@ object ByteCodeModifyKt {
                         // 方法开始
                         super.onMethodEnter()
                         println("aAdviceAdapter  onMethodEnter  name:${name} ")
+                        getStatic(Type.getType("Ljava/lang/System;"),"out",Type.getType("Ljava/io/PrintStream;"))
+//                        swap()
+                        visitLdcInsn("insert")
+                        invokeVirtual(Type.getType("Ljava/io/PrintStream;"),
+                            Method("println","(Ljava/lang/Object;)V")
+                        )
                     }
 
                     @Override

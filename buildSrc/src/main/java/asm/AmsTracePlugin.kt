@@ -7,23 +7,27 @@ import org.gradle.api.Project
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
 import org.objectweb.asm.ClassVisitor
+import org.objectweb.asm.util.TraceClassVisitor
+import java.io.File
+import java.io.PrintWriter
 
 /**
  * @author liguandong
  * @data 2022/10/8
  *
+ * 谷歌官方例子
+ *
  */
-class AmsActivityPlugin : Plugin<Project> {
+class AmsTracePlugin : Plugin<Project> {
     override fun apply(project: Project) {
-        println("asm.AmsActivityPlugin apply ")
+        println("AmsPlugin apply ")
         val androidComponents = project.extensions.getByType(AndroidComponentsExtension::class.java)
         androidComponents.onVariants { variant ->
             println("onVariants ${variant.name}")
             // 注册工厂和设置输入参数
             variant.instrumentation.transformClassesWith(
                 ExampleClassVisitorFactory::class.java,
-                InstrumentationScope.ALL
-            ) {
+                InstrumentationScope.ALL) {
                 it.writeToStdout.set(true)
             }
 
@@ -46,9 +50,9 @@ class AmsActivityPlugin : Plugin<Project> {
 
             COPY_FRAMES
             堆栈帧和最大堆栈大小将从原始类复制到检测的类
-            (如果您的检测过程不需要重新计算帧数或最大值，请使用此模式。)
+             (如果您的检测过程不需要重新计算帧数或最大值，请使用此模式。)
              */
-            variant.instrumentation.setAsmFramesComputationMode(FramesComputationMode.COMPUTE_FRAMES_FOR_INSTRUMENTED_METHODS)
+            variant.instrumentation.setAsmFramesComputationMode(FramesComputationMode.COPY_FRAMES)
         }
     }
 
@@ -64,13 +68,15 @@ class AmsActivityPlugin : Plugin<Project> {
             classContext: ClassContext,
             nextClassVisitor: ClassVisitor
         ): ClassVisitor {
-            println("createClassVisitor ${classContext.currentClassData.className}")
-            return ActivityClassVisitor(nextClassVisitor)
+            return if (parameters.get().writeToStdout.get()) {
+                TraceClassVisitor(nextClassVisitor, PrintWriter(System.out))
+            } else {
+                TraceClassVisitor(nextClassVisitor, PrintWriter(File("trace_out")))
+            }
         }
 
         override fun isInstrumentable(classData: ClassData): Boolean {
             //类过滤器
-//            println("isInstrumentable : ${classData.className} ${classData.superClasses} ${classData.interfaces}")
             return classData.superClasses.contains("android.app.Activity")
         }
     }

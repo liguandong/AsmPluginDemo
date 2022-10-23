@@ -16,7 +16,8 @@ buildscript {
 plugins {
     id 'java-gradle-plugin'
 }
-apply plugin: 'kotlin'
+apply plugin: 'org.jetbrains.kotlin.jvm'
+//apply plugin: 'kotlin'
 println("buildSrc build.gradle  当前是配置阶段")
 java {
     sourceCompatibility = 11
@@ -47,8 +48,3 @@ dependencies {
 //    implementation "org.ow2.asm:asm:7.1"
 //    implementation localGroovy()//groovy sdk
 }
-
-//java {
-//    sourceCompatibility = JavaVersion.VERSION_1_8
-//    targetCompatibility = JavaVersion.VERSION_1_8
-//}

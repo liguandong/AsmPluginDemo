@@ -1,4 +1,4 @@
-package plugintest
+package com.example.test
 
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassVisitor
@@ -15,7 +15,7 @@ object ByteCodePrinter {
     fun main(args: Array<String>) {
 //        val classFileName = "ByteCodeTest"
         val readClassFilePath = "buildSrc/build/classes/java/main/ByteCodeTest.class"
-        val writeClassFilePath = "buildSrc/src/main/java/ByteCodeTestModify.class"
+        val writeClassFilePath = "buildSrc/src/main/java/ByteCodeTest___.class"
         // 1 读取字节码
         val classReader = ClassReader(File(readClassFilePath).inputStream())
 

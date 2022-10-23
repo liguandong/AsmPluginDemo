@@ -1,4 +1,4 @@
-import asm.AmsActivityPlugin
+import asm.AmsTimeCostPlugin
 
 plugins {
     id 'com.android.application'
@@ -13,7 +13,7 @@ myExtension {
 //apply plugin: 'test-plugin2'
 //apply plugin: 'MavenPlugin'
 //apply plugin: AmsPlugin
-apply plugin: AmsActivityPlugin
+apply plugin: AmsTimeCostPlugin
 
 println("app build.gradle (构建阶段)")
 android {
@@ -60,4 +60,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation "org.ow2.asm:asm-util:7.1"
+    implementation project(path: ':commonlib')
 }

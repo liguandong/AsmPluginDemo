@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 class TestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        Log.i("ASM", "onCreate: ${javaClass.name}")
+        Thread.sleep(1000)
+        Log.i(Constant.TAG, "onCreate: ${javaClass.name}")
     }
 }

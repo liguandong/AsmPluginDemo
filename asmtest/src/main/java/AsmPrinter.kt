@@ -15,7 +15,7 @@ object AsmPrinter {
     @JvmStatic
     fun main(args: Array<String>) {
         // (1) 设置参数
-        val className = "buildSrc/build/classes/java/main/ByteCodeTest.class"
+        val className = ReadClassFilePath
         val asmCode = false
         // (2) 打印结果
         val printer = if (asmCode) ASMifier() else Textifier()

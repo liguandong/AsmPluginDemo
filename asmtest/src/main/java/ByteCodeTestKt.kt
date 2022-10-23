@@ -7,4 +7,8 @@ object ByteCodeTestKt {
     fun main(args: Array<String>) {
         println("Hello World!")
     }
+
+    fun test(){
+        Thread.sleep(100)
+    }
 }

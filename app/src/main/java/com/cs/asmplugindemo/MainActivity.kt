@@ -14,6 +14,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import com.cs.asmplugindemo.databinding.ActivityMainBinding
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +25,18 @@ class MainActivity : AppCompatActivity() {
         val btn1 = findViewById<Button>(R.id.btn1)
         btn1.setOnClickListener {
             startActivity(Intent(this,TestActivity::class.java))
+        }
+        val btn2 = findViewById<Button>(R.id.btn2)
+        btn2.setOnClickListener {
+            startActivity(Intent(this,JavaTestActivity::class.java))
+        }
+        val btn3 = findViewById<Button>(R.id.btn3)
+        btn3.setOnClickListener {
+            try {
+                throw java.lang.RuntimeException("test exception")
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
         }
     }
 }

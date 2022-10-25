@@ -19,15 +19,15 @@ buildscript {
 //    id 'org.jetbrains.kotlin.android' version '1.6.10' apply false
 //}
 
-println 'This is executed during the configuration phase. (配置阶段)'
+println 'This is executed during the configuration phase. (配置阶段 build.gradle)'
 
 allprojects {
-    beforeEvaluate { project ->
-        println("beforeEvaluate $project.name")
-    }
-    afterEvaluate { project ->
-        println("afterEvaluate $project.name")
-    }
+//    beforeEvaluate { project ->
+//        println("beforeEvaluate $project.name")
+//    }
+//    afterEvaluate { project ->
+//        println("afterEvaluate $project.name")
+//    }
 }
 
 task clean(type: Delete) {

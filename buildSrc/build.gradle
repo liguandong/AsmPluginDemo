@@ -18,7 +18,7 @@ plugins {
 }
 apply plugin: 'org.jetbrains.kotlin.jvm'
 //apply plugin: 'kotlin'
-println("buildSrc build.gradle  当前是配置阶段")
+println("buildSrc build.gradle 配置阶段")
 java {
     sourceCompatibility = 11
     targetCompatibility = 11

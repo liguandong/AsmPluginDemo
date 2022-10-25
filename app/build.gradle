@@ -1,21 +1,20 @@
-import asm.AmsTimeCostPlugin
-
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
 }
 
-apply plugin: plugintest.TestPlugin
-myExtension {
-    name = "lgd"
-    verCode = 2
-}
+//apply plugin: plugintest.TestPlugin
+//myExtension {
+//    name = "lgd"
+//    verCode = 2
+//}
+
 //apply plugin: 'test-plugin2'
 //apply plugin: 'MavenPlugin'
-//apply plugin: AmsPlugin
-apply plugin: AmsTimeCostPlugin
+//apply plugin: asm.AsmTracePlugin
+apply plugin: asm.AsmTimeCostPlugin
 
-println("app build.gradle (构建阶段)")
+println("$project.name build.gradle (构建阶段)")
 android {
     compileSdk 31
 

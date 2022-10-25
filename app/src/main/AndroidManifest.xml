@@ -30,6 +30,12 @@
             android:label="@string/app_name"
             android:theme="@style/Theme.AsmPluginDemo">
         </activity>
+        <activity
+            android:name=".JavaTestActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AsmPluginDemo">
+        </activity>
     </application>
 
 </manifest>

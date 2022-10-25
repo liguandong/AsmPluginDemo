@@ -6,16 +6,16 @@ import androidx.annotation.Keep
 @Keep
 object TimeCostUtils {
     private const val TAG = "TimeCostUtils"
-    private var startTime = 0L
+    @JvmStatic
+    fun onMethodEnd(className:String,methodName:String,startTime:Long) {
+//        if(System.currentTimeMillis() - startTime >= 500) {
+            Log.e(TAG, "className $className methodName $methodName cost : ${System.currentTimeMillis() - startTime}ms")
+//        }
+    }
 
     @JvmStatic
-    fun onMethodEnter() {
-        startTime = System.currentTimeMillis()
-    }
-    @JvmStatic
-    fun onMethodEnd(className:String,methodName:String) {
-        if(System.currentTimeMillis() - startTime >= 500) {
-            Log.e(TAG, "className $className methodName $methodName cost : ${System.currentTimeMillis() - startTime}ms")
-        }
+    fun main(args: Array<String>) {
+        val start = System.currentTimeMillis()
+        onMethodEnd("test","init",start)
     }
 }

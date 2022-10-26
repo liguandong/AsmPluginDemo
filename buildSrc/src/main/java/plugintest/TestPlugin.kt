@@ -14,21 +14,12 @@ class TestPlugin : Plugin<Project> {
         println("TestPlugin apply ")
         val ext = project.extensions.create("myExtension", MyExtension::class.java)
         println("TestPlugin apply 输入参数 ${ext}")
-        project.afterEvaluate {
-            println("TestPlugin MyPlugin afterEvaluate  输入参数${ext}")
-        }
-        project.task("hello"){
-            println("TestPlugin MyPlugin   输入参数${ext}")
-            it.doFirst {
-                println("TestPlugin MyPlugin afterEvaluate  输入参数${ext}")
-                ext.name
-            }
-            it.doLast {
-                println("TestPlugin MyPlugin doLast  输入参数${ext}")
-            }
-        }
-        project.tasks.create("hello2", TestPluginTask1::class.java,ext).also {
-            it.message.set("Property message")
-        }
+//        project.afterEvaluate {
+//            println("TestPlugin MyPlugin afterEvaluate  输入参数${ext}")
+//            project.tasks.create("hello${ext.verCode}", TestPluginTask1::class.java,ext).also {
+//                it.message.set("Property message")
+//                it.group = "helloGroup"
+//            }
+//        }
     }
 }

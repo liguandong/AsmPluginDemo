@@ -8,6 +8,6 @@ import org.gradle.api.Project
  */
 class LocalMavenPlugin:Plugin<Project> {
     override fun apply(project: Project) {
-        println("LocalMavenPlugin")
+        println("LocalMavenPlugin apply")
     }
 }

@@ -3,13 +3,12 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
-//apply plugin: plugintest.TestPlugin
-//myExtension {
-//    name = "lgd"
-//    verCode = 2
-//}
-
-//apply plugin: 'test-plugin2'
+apply plugin: plugintest.TestPlugin
+//apply plugin: 'test-plugin'
+myExtension {
+    name = "lgd"
+    verCode = 2
+}
 //apply plugin: 'MavenPlugin'
 //apply plugin: asm.AsmTracePlugin
 apply plugin: asm.AsmTimeCostPlugin
@@ -17,7 +16,7 @@ apply plugin: asm.AsmTimeCostPlugin
 println("$project.name build.gradle (构建阶段)")
 android {
     compileSdk 31
-
+//    compileSdkVersion 31
     defaultConfig {
         applicationId "com.cs.asmplugindemo"
         minSdk 21

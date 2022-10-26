@@ -77,7 +77,7 @@ class AsmTracePlugin : Plugin<Project> {
 
         override fun isInstrumentable(classData: ClassData): Boolean {
             //类过滤器
-            return classData.superClasses.contains("android.app.Activity")
+            return classData.superClasses.contains("androidx.appcompat.app.AppCompatActivity")
         }
     }
 }

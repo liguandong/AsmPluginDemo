@@ -6,6 +6,9 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.cs.commonlib.CostAnnotation;
+import com.cs.commonlib.JCostAnnotation;
+
 public class JavaTestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,5 +29,17 @@ public class JavaTestActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
+    }
+
+    @CostAnnotation
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @JCostAnnotation()
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }

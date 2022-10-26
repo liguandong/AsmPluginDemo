@@ -1,57 +1,55 @@
+plugins {
+    id 'java-library'
+    id 'org.jetbrains.kotlin.jvm'
+}
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+dependencies {
+    implementation "org.ow2.asm:asm-util:9.1"
+    implementation "org.ow2.asm:asm-commons:9.1"
+    implementation "org.ow2.asm:asm:9.1"
+}
 //plugins {
-//    id 'java-library'
-//    id 'org.jetbrains.kotlin.jvm'
+//    id 'com.android.library'
+//    id 'org.jetbrains.kotlin.android'
 //}
-//java {
-//    sourceCompatibility = JavaVersion.VERSION_11
-//    targetCompatibility = JavaVersion.VERSION_11
+//println("asmtest build.gradle (构建阶段)")
+//
+//android {
+//    compileSdk 31
+//
+//    defaultConfig {
+//        minSdk 21
+//        targetSdk 31
+//
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//        consumerProguardFiles "consumer-rules.pro"
+//    }
+//
+//    buildTypes {
+//        release {
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//        }
+//    }
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_11
+//        targetCompatibility JavaVersion.VERSION_11
+//    }
+//    kotlinOptions {
+//        jvmTarget = '11'
+//    }
 //}
+//
 //dependencies {
+//    implementation 'androidx.core:core-ktx:1.6.0'
+//    implementation 'androidx.appcompat:appcompat:1.4.0'
+//    implementation 'com.google.android.material:material:1.6.1'
+//
 //    implementation "org.ow2.asm:asm-util:9.1"
 //    implementation "org.ow2.asm:asm-commons:9.1"
 //    implementation "org.ow2.asm:asm:9.1"
 //    implementation project(path: ':commonlib')
-////    implementation project(path: ':commonlib')
 //}
-plugins {
-    id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
-}
-println("asmtest build.gradle (构建阶段)")
-
-android {
-    compileSdk 31
-
-    defaultConfig {
-        minSdk 21
-        targetSdk 31
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = '11'
-    }
-}
-
-dependencies {
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.appcompat:appcompat:1.4.0'
-    implementation 'com.google.android.material:material:1.6.1'
-
-    implementation "org.ow2.asm:asm-util:9.1"
-    implementation "org.ow2.asm:asm-commons:9.1"
-    implementation "org.ow2.asm:asm:9.1"
-    implementation project(path: ':commonlib')
-}

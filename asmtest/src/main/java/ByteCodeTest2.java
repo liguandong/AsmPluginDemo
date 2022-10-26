@@ -9,4 +9,9 @@ public class ByteCodeTest2 {
 //        long cost = System.currentTimeMillis()-start;
         System.out.println("cost :" + (System.currentTimeMillis()-start) + "ms");
     }
+
+    public void add(int a,int b){
+        int c = 1;
+        int d = c + a + b;
+    }
 }

@@ -19,6 +19,7 @@ class TestPlugin : Plugin<Project> {
 //            project.tasks.create("hello${ext.verCode}", TestPluginTask1::class.java,ext).also {
 //                it.message.set("Property message")
 //                it.group = "helloGroup"
+////                it.dependsOn()
 //            }
 //        }
     }

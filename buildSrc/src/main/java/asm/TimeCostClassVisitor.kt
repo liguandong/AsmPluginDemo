@@ -9,7 +9,7 @@ import org.objectweb.asm.commons.Method
  * @data 2022/10/8
  *
  */
-class TimeCostClassVisitor(nextVisitor: ClassVisitor) : ClassVisitor(Opcodes.ASM7, nextVisitor) {
+class TimeCostClassVisitor(nextVisitor: ClassVisitor) : ClassVisitor(Opcodes.ASM9, nextVisitor) {
     private var className: String? = null
     override fun visit(
         version: Int,
@@ -38,7 +38,7 @@ class TimeCostClassVisitor(nextVisitor: ClassVisitor) : ClassVisitor(Opcodes.ASM
         }
 
         val newMethodVisitor =
-            object : AdviceAdapter(Opcodes.ASM7, methodVisitor, access, name, descriptor) {
+            object : AdviceAdapter(Opcodes.ASM9, methodVisitor, access, name, descriptor) {
                 private var slot = 0
                 private var isSkin = false
                 override fun visitAnnotation(

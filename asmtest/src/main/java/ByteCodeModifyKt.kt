@@ -58,8 +58,10 @@ object ByteCodeModifyKt {
                         super.onMethodEnter()
                         // 方法开始
                         println("aAdviceAdapter  onMethodEnter  name:${name} ")
-                        visitMethodInsn(INVOKESTATIC, "java/lang/System", "currentTimeMillis", "()J", false);
-                        visitVarInsn(LSTORE, 1);
+
+//                        visitMethodInsn(INVOKESTATIC, "java/lang/System", "currentTimeMillis", "()J", false);
+//                        slot = newLocal(Type.LONG_TYPE)
+//                        visitVarInsn(LSTORE, slot);
                     }
 
                     @Override
@@ -68,22 +70,21 @@ object ByteCodeModifyKt {
                         // 方法结束
                         println("AdviceAdapter onMethodExit name:${name} opcode:${opcode}")
 
-                        visitTypeInsn(NEW, "java/lang/StringBuilder");
-                        visitInsn(DUP);
-                        visitMethodInsn(INVOKESPECIAL, "java/lang/StringBuilder", "<init>", "()V", false);
-                        visitLdcInsn("cost: ");
-                        visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
-                        visitMethodInsn(INVOKESTATIC, "java/lang/System", "currentTimeMillis", "()J", false);
-                        visitVarInsn(LLOAD, 1);
-                        visitInsn(LSUB);
-                        visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(J)Ljava/lang/StringBuilder;", false);
-                        visitLdcInsn("ms");
-                        visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
-                        visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false);
-                        visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
-                        visitInsn(SWAP);
-                        visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/Object;)V", false);
-
+//                        visitTypeInsn(NEW, "java/lang/StringBuilder");
+//                        visitInsn(DUP);
+//                        visitMethodInsn(INVOKESPECIAL, "java/lang/StringBuilder", "<init>", "()V", false);
+//                        visitLdcInsn("cost: ");
+//                        visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
+//                        visitMethodInsn(INVOKESTATIC, "java/lang/System", "currentTimeMillis", "()J", false);
+//                        visitVarInsn(LLOAD, slot);
+//                        visitInsn(LSUB);
+//                        visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(J)Ljava/lang/StringBuilder;", false);
+//                        visitLdcInsn("ms");
+//                        visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
+//                        visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false);
+//                        visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+//                        visitInsn(SWAP);
+//                        visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/Object;)V", false);
                     }
                 }
 

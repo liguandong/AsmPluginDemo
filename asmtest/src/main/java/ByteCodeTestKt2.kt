@@ -9,7 +9,7 @@ object ByteCodeTestKt2 {
         println("Hello World!")
     }
 
-    fun test() {
+    fun cost() {
         val start = System.currentTimeMillis()
         Thread.sleep(100)
         println("cost: ${System.currentTimeMillis() - start}ms")

@@ -21,6 +21,7 @@ object AsmPrinter {
         val printer = if (asmCode) ASMifier() else Textifier()
         val printWriter = PrintWriter(System.out, true)
         val traceClassVisitor = TraceClassVisitor(null, printer, printWriter)
-        ClassReader(File(className).inputStream()).accept(traceClassVisitor, ClassReader.SKIP_FRAMES or ClassReader.SKIP_DEBUG)
+        ClassReader(File(className).inputStream()).accept(traceClassVisitor, ClassReader.EXPAND_FRAMES)
+//        ClassReader(File(className).inputStream()).accept(traceClassVisitor, ClassReader.SKIP_FRAMES or ClassReader.SKIP_DEBUG)
     }
 }

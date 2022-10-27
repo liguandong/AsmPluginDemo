@@ -22,6 +22,6 @@ abstract class TestPluginTask1 @Inject constructor(private val myExtension: MyEx
 
     @TaskAction
     fun doTask(){
-        println("plugintest.MyTask ${myExtension.name} ${message.get()}")
+        println("Hello Task ${myExtension.name} ${message.get()}")
     }
 }
